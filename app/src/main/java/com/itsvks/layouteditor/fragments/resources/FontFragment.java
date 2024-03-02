@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,24 +37,23 @@ import java.util.List;
 public class FontFragment extends Fragment {
 
   private FragmentResourcesBinding binding;
-  private RecyclerView mRecyclerView;
   private FontResourceAdapter adapter;
   private ProjectFile project;
   private List<FontItem> fontList = new ArrayList<>();
 
   @Override
   public android.view.View onCreateView(
-      LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     binding = FragmentResourcesBinding.inflate(inflater, container, false);
     project = ProjectManager.getInstance().getOpenedProject();
     return binding.getRoot();
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     loadFonts();
-    mRecyclerView = binding.recyclerView;
+    RecyclerView mRecyclerView = binding.recyclerView;
     adapter = new FontResourceAdapter(fontList);
     mRecyclerView.setAdapter(adapter);
     mRecyclerView.setLayoutManager(
@@ -82,7 +83,7 @@ public class FontFragment extends Fragment {
     final String lastSegment = FileUtil.getLastSegmentFromPath(path);
     final String fileName = lastSegment.substring(0, lastSegment.lastIndexOf("."));
     final String extension =
-        lastSegment.substring(lastSegment.lastIndexOf("."), lastSegment.length());
+        lastSegment.substring(lastSegment.lastIndexOf("."));
     final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
     final LayoutFontItemDialogBinding dialogBinding =
         LayoutFontItemDialogBinding.inflate(builder.create().getLayoutInflater());
@@ -135,7 +136,7 @@ public class FontFragment extends Fragment {
         (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
     inputMethodManager.showSoftInput(editTextName, InputMethodManager.SHOW_IMPLICIT);
 
-    if (!editTextName.getText().toString().equals("")) {
+    if (!editTextName.getText().toString().isEmpty()) {
       editTextName.setSelection(0, editTextName.getText().toString().length());
     }
   }
