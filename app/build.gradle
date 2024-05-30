@@ -12,7 +12,7 @@ android {
         applicationId "com.itsvks.layouteditor"
         minSdk 26
         targetSdk 34
-        versionCode 6
+        versionCode 8
         versionName project.versionName
     }
 
@@ -30,9 +30,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            debuggable false
         }
         debug {
             signingConfig signingConfigs.release
+            debuggable true
         }
     }
 
