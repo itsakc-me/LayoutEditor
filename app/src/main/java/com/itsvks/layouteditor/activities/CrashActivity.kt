@@ -65,7 +65,7 @@ class CrashActivity : BaseActivity() {
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    val close = menu.add(getString(R.string.close))
+    val close = menu.add(Menu.NONE, 0, 0, getString(R.string.close))
     close.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
     close.setIcon(AppCompatResources.getDrawable(this, R.drawable.close))
     close.setContentDescription(getString(R.string.close_app))
@@ -74,9 +74,7 @@ class CrashActivity : BaseActivity() {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.title == getString(R.string.close)) {
-      killActivity()
-    }
+    if (item.itemId == 0) killActivity()
     return true
   }
 

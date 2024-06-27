@@ -16,11 +16,7 @@ class CrashHandler(myContext: WeakReference<Context?>) : Thread.UncaughtExceptio
   private val errorMessage = StringBuilder()
   private val softwareInfo = StringBuilder()
   private val dateInfo = StringBuilder()
-  private val context: Context?
-
-  init {
-    this.context = myContext.get()
-  }
+  private val context: Context? = myContext.get()
 
   override fun uncaughtException(thread: Thread, exception: Throwable) {
     // Create a StringWriter to write stack trace to

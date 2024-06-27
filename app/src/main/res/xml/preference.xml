@@ -2,7 +2,9 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <PreferenceCategory app:title="@string/ui">
+  <PreferenceCategory
+    app:iconSpaceReserved="false"
+    app:title="@string/ui">
     <Preference
       app:icon="@drawable/palette"
       app:key="app_theme"
@@ -17,7 +19,9 @@
       app:title="@string/dynamic_colors" />
   </PreferenceCategory>
 
-  <PreferenceCategory app:title="@string/common">
+  <PreferenceCategory
+    app:iconSpaceReserved="false"
+    app:title="@string/common">
     <SwitchPreferenceCompat
       android:defaultValue="false"
       app:icon="@drawable/vibrate"

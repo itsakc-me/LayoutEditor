@@ -105,7 +105,7 @@ class ShowXMLActivity : BaseActivity() {
   @Throws(Exception::class)
   private fun ensureTextmateTheme() {
     val editor = binding!!.editor
-    var editorColorScheme: EditorColorScheme? = editor.colorScheme
+    var editorColorScheme = editor.colorScheme
     if (editorColorScheme !is TextMateColorScheme) {
       editorColorScheme = TextMateColorScheme.create(ThemeRegistry.getInstance())
       editor.colorScheme = editorColorScheme
